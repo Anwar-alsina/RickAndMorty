@@ -1,4 +1,7 @@
-package com.example.rickmorty
+package com.example.rickmorty.network.response
+
+import com.example.rickmorty.network.Location
+import com.example.rickmorty.network.Origin
 
 data class GetCharacterByIdResponse(
     val created: String,

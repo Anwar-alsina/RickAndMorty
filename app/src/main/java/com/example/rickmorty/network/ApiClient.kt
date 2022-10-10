@@ -1,6 +1,7 @@
-package com.example.rickmorty
+package com.example.rickmorty.network
 
-import com.example.rickmorty.NetworkLayer.rickAndMortyService
+import com.example.rickmorty.network.response.GetCharacterByIdResponse
+import com.example.rickmorty.network.NetworkLayer.rickAndMortyService
 import retrofit2.Response
 
 class ApiClient(rickAndMortyService: RickAndMortyService) {
@@ -9,7 +10,7 @@ class ApiClient(rickAndMortyService: RickAndMortyService) {
         return safeApiCall { rickAndMortyService.getCharacterById(characterId) }
     }
 
-    private inline fun<T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T>{
+    private inline fun<T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
         return try {
             SimpleResponse.success(apiCall.invoke())
         }catch (e:Exception){

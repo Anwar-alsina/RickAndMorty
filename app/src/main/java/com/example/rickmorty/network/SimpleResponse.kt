@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.network
 
 import retrofit2.Response
 
@@ -8,14 +8,14 @@ data class SimpleResponse<T>(
     val exception: Exception?
 ){
     companion object{
-        fun <T> success(data:Response<T>): SimpleResponse<T>{
+        fun <T> success(data:Response<T>): SimpleResponse<T> {
             return SimpleResponse(
                 status = Status.Success,
                 data = data,
                 exception = null
             )
         }
-        fun <T> failure(exception: Exception?): SimpleResponse<T>{
+        fun <T> failure(exception: Exception): SimpleResponse<T> {
             return SimpleResponse(
                 status = Status.Failure,
                 data = null,
@@ -23,8 +23,6 @@ data class SimpleResponse<T>(
             )
         }
     }
-
-
 
     sealed class Status {
         object Success: Status()

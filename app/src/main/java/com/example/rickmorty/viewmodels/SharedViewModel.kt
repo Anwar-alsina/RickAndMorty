@@ -1,9 +1,10 @@
-package com.example.rickmorty
+package com.example.rickmorty.viewmodels
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.rickmorty.network.response.GetCharacterByIdResponse
+import com.example.rickmorty.repository.SharedRepository
 import kotlinx.coroutines.launch
 
 class SharedViewModel:ViewModel() {
