@@ -61,7 +61,7 @@ class CharacterDetailsEpoxyController: EpoxyController() {
         DataPointEpoxyModel(
             title = "Species",
             description = characterResponse!!.species
-        )
+        ).id("data_point_2").addTo(this)
 
     }
 
@@ -94,12 +94,11 @@ class CharacterDetailsEpoxyController: EpoxyController() {
     data class DataPointEpoxyModel(
         val title:String,
         val description: String
+
     ): ViewBindingKotlinModel<ModelCharacterDetailsDataPointBinding>(R.layout.model_character_details_data_point){
         override fun ModelCharacterDetailsDataPointBinding.bind() {
-            tvLabel.text = title
-            tvSpeciesDesc.text = description
-            tvOrigin.text = title
-            tvOriginDesc.text = description
+            labelTextView.text = title
+            textView.text = description
         }
     }
 

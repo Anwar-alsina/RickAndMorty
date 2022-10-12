@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        mSharedViewModel.refreshCharacter(54)
+        val id = intent.getIntExtra(Constants.INTENT_EXTRA_CHARACTER_ID,1)
+        mSharedViewModel.refreshCharacter(characterId = id)
         val rvEpoxy = binding.rvEpoxy
         rvEpoxy.setControllerAndBuildModels(epoxyController)
         }
