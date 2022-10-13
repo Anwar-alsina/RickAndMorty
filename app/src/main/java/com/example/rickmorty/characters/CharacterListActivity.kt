@@ -3,6 +3,7 @@ package com.example.rickmorty.characters
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.Constants
@@ -21,6 +22,7 @@ class CharacterListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_list)
 
+
         mCharacterViewModel.charactersPagedListLiveData.observe(this) { pagedList ->
             epoxyController.submitList(pagedList)
         }
@@ -35,4 +37,5 @@ class CharacterListActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+
 }

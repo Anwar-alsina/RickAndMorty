@@ -2,6 +2,7 @@ package com.example.rickmorty
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.rickmorty.databinding.ActivityMainBinding
@@ -22,22 +23,37 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        mSharedViewModel.characterByIdLiveData.observe(this){response ->
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-            epoxyController.characterResponse = response
 
-            if (response == null){
+        mSharedViewModel.characterByIdLiveData.observe(this) { character ->
+
+            epoxyController.character = character
+
+            if (character == null) {
                 Toast.makeText(
                     this@MainActivity,
                     "Unsuccessful network request",
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_LONG
+                ).show()
                 return@observe
             }
         }
 
-        val id = intent.getIntExtra(Constants.INTENT_EXTRA_CHARACTER_ID,1)
+        val id = intent.getIntExtra(Constants.INTENT_EXTRA_CHARACTER_ID, 1)
         mSharedViewModel.refreshCharacter(characterId = id)
         val rvEpoxy = binding.rvEpoxy
         rvEpoxy.setControllerAndBuildModels(epoxyController)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else ->
+                super.onOptionsItemSelected(item)
         }
+    }
 }

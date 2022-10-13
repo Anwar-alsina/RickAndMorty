@@ -1,6 +1,4 @@
-package com.example.rickmorty.characters
-
-import com.example.rickmorty.network.response.GetCharacterByIdResponse
+package com.example.rickmorty.network.response
 
 
 data class GetCharactersPageResponse(

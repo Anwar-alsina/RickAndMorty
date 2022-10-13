@@ -1,6 +1,7 @@
 package com.example.rickmorty.characters
 
 import com.example.rickmorty.network.NetworkLayer
+import com.example.rickmorty.network.response.GetCharactersPageResponse
 
 class CharacterRepository {
 

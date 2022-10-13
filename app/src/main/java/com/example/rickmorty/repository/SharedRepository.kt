@@ -1,21 +1,22 @@
 package com.example.rickmorty.repository
 
+import com.example.rickmorty.domain.mappers.CharacterMapper
+import com.example.rickmorty.domain.models.Characters
 import com.example.rickmorty.network.NetworkLayer
-import com.example.rickmorty.network.response.GetCharacterByIdResponse
+
 
 class SharedRepository {
 
-    suspend fun getCharacterById(characterId: Int): GetCharacterByIdResponse?{
+    suspend fun getCharacterById(characterId: Int): Characters? {
         val request = NetworkLayer.apiClient.getCharacterById(characterId)
 
-        if (!request.isSuccessful){
-            return null
-        }
         if (request.failed){
             return null
         }
+        if (!request.isSuccessful){
+            return null
+        }
 
-        return request.body
+        return  CharacterMapper.buildFrom(response = request.body)
     }
-
 }

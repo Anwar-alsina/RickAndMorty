@@ -1,4 +1,4 @@
-package com.example.rickmorty.network
+package com.example.rickmorty.network.response
 
 data class Location(
     val name: String,

@@ -1,16 +1,15 @@
 package com.example.rickmorty.network
 
-import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.ModelCharacterDetailsDataPointBinding
 import com.example.rickmorty.databinding.ModelCharacterImageDetailsBinding
 import com.example.rickmorty.databinding.ModelDetailsHeaderBinding
+import com.example.rickmorty.domain.models.Characters
 import com.example.rickmorty.epoxy.LoadingEpoxyModel
 import com.example.rickmorty.epoxy.ViewBindingKotlinModel
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
-import retrofit2.Response
 
 class CharacterDetailsEpoxyController: EpoxyController() {
     var isLoading:Boolean = true
@@ -20,7 +19,7 @@ class CharacterDetailsEpoxyController: EpoxyController() {
             requestModelBuild()
         }
     }
-    var characterResponse:GetCharacterByIdResponse? = null
+    var character:Characters? = null
     set(value) {
         field= value
         if (field != null){
@@ -35,32 +34,32 @@ class CharacterDetailsEpoxyController: EpoxyController() {
             LoadingEpoxyModel().id("loading").addTo(this)
             return
         }
-        if (characterResponse == null){
+        if (character == null){
             //to do error state
             return
         }
 
         //Header Model
         HeaderEpoxyModel(
-            name = characterResponse!!.name,
-            gender = characterResponse!!.gender,
-            status = characterResponse!!.status
+            name = character!!.name,
+            gender = character!!.gender,
+            status = character!!.status
         ).id("header").addTo(this)
 
         //Image Model
         ImageEpoxyModel(
-            image = characterResponse!!.image
+            image = character!!.image
         ).id("image").addTo(this)
 
         //Data Point Model
         DataPointEpoxyModel(
             title = "Origin",
-            description = characterResponse!!.origin.name
+            description = character!!.origin.name
         ).id("data_point_1").addTo(this)
 
         DataPointEpoxyModel(
             title = "Species",
-            description = characterResponse!!.species
+            description = character!!.species
         ).id("data_point_2").addTo(this)
 
     }

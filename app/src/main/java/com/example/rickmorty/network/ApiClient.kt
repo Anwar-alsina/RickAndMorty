@@ -1,6 +1,6 @@
 package com.example.rickmorty.network
 
-import com.example.rickmorty.characters.GetCharactersPageResponse
+import com.example.rickmorty.network.response.GetCharactersPageResponse
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.example.rickmorty.network.NetworkLayer.rickAndMortyService
 import retrofit2.Response
