@@ -14,7 +14,6 @@ import com.example.rickmorty.viewmodels.SharedViewModel
 
 class CharacterDetailFragment : Fragment() {
 
-
     val mSharedViewModel by lazy {
         ViewModelProvider(this)[SharedViewModel::class.java]
     }

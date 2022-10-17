@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.example.rickmorty.CharacterListFragment"
-        android:label="fragment_character_list"
+        android:label="Rick &amp; Morty"
         tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.example.rickmorty.CharacterDetailFragment"
-        android:label="fragment_character_detail"
+        android:label="Character Detail"
         tools:layout="@layout/fragment_character_detail" >
 
         <argument
