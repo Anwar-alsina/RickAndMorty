@@ -30,4 +30,9 @@
             app:argType="integer"/>
 
     </fragment>
+    <fragment
+        android:id="@+id/episodeFragment"
+        android:name="com.example.rickmorty.EpisodeFragment"
+        android:label="Rick &amp; Morty Episodes"
+        tools:layout="@layout/fragment_episode" />
 </navigation>
