@@ -2,7 +2,7 @@ package com.example.rickmorty.network
 
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.example.rickmorty.RickAndMortyApplication
+import com.example.rickmorty.application.RickAndMortyApplication
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

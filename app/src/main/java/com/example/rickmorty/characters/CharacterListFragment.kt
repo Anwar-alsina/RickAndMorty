@@ -1,6 +1,5 @@
-package com.example.rickmorty
+package com.example.rickmorty.characters
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,8 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.example.rickmorty.characters.CharacterListPagingEpoxyController
-import com.example.rickmorty.characters.CharactersViewModel
+import com.example.rickmorty.R
 
 
 class CharacterListFragment : Fragment() {

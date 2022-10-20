@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.application
 
 import android.app.Application
 import android.content.Context

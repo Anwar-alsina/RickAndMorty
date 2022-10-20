@@ -66,7 +66,7 @@ dependencies {
     //Epoxy
     implementation "com.airbnb.android:epoxy:5.0.0"
     kapt ("com.airbnb.android:epoxy-processor:5.0.0")
-    implementation 'com.airbnb.android:epoxy-paging:5.0.0'
+    implementation 'com.airbnb.android:epoxy-paging3:5.0.0'
 
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")

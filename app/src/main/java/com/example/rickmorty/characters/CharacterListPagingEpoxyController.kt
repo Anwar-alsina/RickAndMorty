@@ -1,7 +1,7 @@
 package com.example.rickmorty.characters
 
 import com.airbnb.epoxy.EpoxyModel
-import com.airbnb.epoxy.paging.PagedListEpoxyController
+import com.airbnb.epoxy.paging3.PagedListEpoxyController
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.ModelCharacterListItemBinding
 import com.example.rickmorty.databinding.ModelCharacterListTitleBinding
