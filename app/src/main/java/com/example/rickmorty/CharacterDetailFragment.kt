@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.network.CharacterDetailsEpoxyController
@@ -42,12 +43,13 @@ class CharacterDetailFragment : Fragment() {
                     "Unsuccessful network request",
                     Toast.LENGTH_LONG
                 ).show()
+                findNavController().navigateUp()
                 return@observe
             }
         }
 
 
-       mSharedViewModel.refreshCharacter(characterId = safeArgs.characterId)
+       mSharedViewModel.fetchCharacter(characterId = safeArgs.characterId)
         val rvEpoxy = view.findViewById<EpoxyRecyclerView>(R.id.rvEpoxy)
         rvEpoxy.setControllerAndBuildModels(epoxyController)
     }
