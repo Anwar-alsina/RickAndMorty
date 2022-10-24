@@ -5,18 +5,28 @@ import com.airbnb.epoxy.paging3.PagedListEpoxyController
 import com.airbnb.epoxy.paging3.PagingDataEpoxyController
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.ModelEpisodeListItemBinding
+import com.example.rickmorty.databinding.ModelEpisodeListTitleBinding
 import com.example.rickmorty.domain.models.Episode
 import com.example.rickmorty.epoxy.ViewBindingKotlinModel
 
-class EpisodeListEpoxyController:PagingDataEpoxyController<Episode>() {
-    override fun buildItemModel(currentPosition: Int, item: Episode?): EpoxyModel<*> {
+class EpisodeListEpoxyController:PagingDataEpoxyController<EpisodesUiModel>() {
+    override fun buildItemModel(currentPosition: Int, item: EpisodesUiModel?): EpoxyModel<*> {
 
-        return EpisodeListEpoxyModel(
-            episode = item!!,
-            onClick = {episodeId ->
-                //todo
+        return when(item!!){
+            is EpisodesUiModel.Item ->{
+                val episode = (item as EpisodesUiModel.Item).episode
+                EpisodeListEpoxyModel(
+                    episode = episode,
+                    onClick = {episodeId ->
+                        //todo
+                    }
+                ).id("episode ${episode.id}")
             }
-        ).id("episode ${item.id}")
+            is EpisodesUiModel.Header -> {
+                val headerText = (item as EpisodesUiModel.Header).text
+                EpisodeListTitleEpoxyModel(headerText).id("header_$headerText")
+            }
+        }
     }
 
     data class EpisodeListEpoxyModel(
@@ -26,8 +36,20 @@ class EpisodeListEpoxyController:PagingDataEpoxyController<Episode>() {
         override fun ModelEpisodeListItemBinding.bind() {
             episodeNameTextView.text = episode.name
             episodeAirDateTextView.text = episode.airDate
-            episodeNumberTextView.text = episode.episode
+            episodeNumberTextView.text = episode.getFormattedSeasonTruncated()
         }
 
     }
+
+    data class EpisodeListTitleEpoxyModel(
+        val title : String
+    ): ViewBindingKotlinModel<ModelEpisodeListTitleBinding>(R.layout.model_episode_list_title){
+        override fun ModelEpisodeListTitleBinding.bind() {
+            textView.text = title
+        }
+
+    }
+
+
 }
+

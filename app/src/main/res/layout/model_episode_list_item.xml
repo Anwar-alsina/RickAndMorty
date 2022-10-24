@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="8dp"
+    android:background="?colorSurface"
     android:paddingBottom="48dp"
-    android:background="?colorSurface">
+    app:cardBackgroundColor="?colorSurface"
+    app:cardCornerRadius="8dp"
+    app:strokeColor="?colorOnSurface"
+    app:strokeWidth="1px">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,10 +20,10 @@
             android:id="@+id/episodeNumberTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_episode_number"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:background="@drawable/background_episode_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="S01EP1" />
@@ -50,10 +55,7 @@
             tools:text="December 2, 2013" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </com.google.android.material.card.MaterialCardView>

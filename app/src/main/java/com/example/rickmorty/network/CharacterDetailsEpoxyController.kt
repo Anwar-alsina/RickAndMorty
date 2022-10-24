@@ -127,7 +127,7 @@ class CharacterDetailsEpoxyController: EpoxyController() {
         val episode: Episode
     ): ViewBindingKotlinModel<ModelEpisodeCarouselItemBinding>(R.layout.model_episode_carousel_item){
         override fun ModelEpisodeCarouselItemBinding.bind() {
-            tvEpisode.text = episode.episode
+            tvEpisode.text = episode.getFormattedSeasonTruncated()
             tvEpisodeDetails.text = "${episode.name}\n${episode.airDate}"
         }
     }
