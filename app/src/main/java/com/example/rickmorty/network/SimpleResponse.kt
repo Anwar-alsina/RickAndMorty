@@ -38,4 +38,7 @@ data class SimpleResponse<T>(
     val body:T
      get() = this.data!!.body()!!
 
+    val bodyNullable: T?
+        get() = this.data?.body()
+
 }

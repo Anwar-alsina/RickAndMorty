@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.example.rickmorty.NavGraphDirections
 import com.example.rickmorty.R
 import com.example.rickmorty.characters.CharacterListFragmentDirections
 import com.example.rickmorty.databinding.FragmentEpisodeBinding
@@ -38,7 +39,13 @@ class EpisodeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentEpisodeBinding.bind(view)
 
-        val epoxyController = EpisodeListEpoxyController()
+        val epoxyController = EpisodeListEpoxyController{episodeClickedId ->
+            val navDirections =
+                NavGraphDirections.actionGlobalToEpisodeDetailFragment(episodeId = episodeClickedId)
+
+            findNavController().navigate(navDirections)
+        }
+
         lifecycleScope.launch{
             viewModel.flow.collectLatest {pagingData: PagingData<EpisodesUiModel> ->
                 epoxyController.submitData(pagingData)

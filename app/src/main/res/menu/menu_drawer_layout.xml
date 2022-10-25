@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="All Characters">
-        <menu>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/characterListFragment"
-            android:title="All Characters"
-            android:icon="@drawable/ic_characters"/>
-    </group>
-        </menu>
-    </item>
-
-    <item android:title="All Episodes">
+    <item android:title="@string/characters">
         <menu>
             <group android:checkableBehavior="single">
-
                 <item
-                    android:id="@+id/episodeFragment"
-                    android:title="All Episodes"
-                    android:icon="@drawable/ic_episode"/>
-
+                    android:id="@+id/characterListFragment"
+                    android:icon="@drawable/ic_characters"
+                    android:title="@string/all_characters" />
+                <item
+                    android:id="@+id/characterSearchFragment"
+                    android:icon="@drawable/ic_search"
+                    android:title="@string/search_characters" />
             </group>
         </menu>
     </item>
 
+    <item android:title="@string/episodes">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/episodeFragment"
+                    android:icon="@drawable/ic_episode"
+                    android:title="@string/all_episodes" />
+            </group>
+        </menu>
+    </item>
 
 
 

@@ -9,7 +9,9 @@ import com.example.rickmorty.databinding.ModelEpisodeListTitleBinding
 import com.example.rickmorty.domain.models.Episode
 import com.example.rickmorty.epoxy.ViewBindingKotlinModel
 
-class EpisodeListEpoxyController:PagingDataEpoxyController<EpisodesUiModel>() {
+class EpisodeListEpoxyController(
+    private val onEpisodeClicked: (Int) -> Unit
+):PagingDataEpoxyController<EpisodesUiModel>() {
     override fun buildItemModel(currentPosition: Int, item: EpisodesUiModel?): EpoxyModel<*> {
 
         return when(item!!){
@@ -18,7 +20,7 @@ class EpisodeListEpoxyController:PagingDataEpoxyController<EpisodesUiModel>() {
                 EpisodeListEpoxyModel(
                     episode = episode,
                     onClick = {episodeId ->
-                        //todo
+                        onEpisodeClicked(episodeId)
                     }
                 ).id("episode ${episode.id}")
             }
@@ -37,6 +39,8 @@ class EpisodeListEpoxyController:PagingDataEpoxyController<EpisodesUiModel>() {
             episodeNameTextView.text = episode.name
             episodeAirDateTextView.text = episode.airDate
             episodeNumberTextView.text = episode.getFormattedSeasonTruncated()
+
+            root.setOnClickListener { onClick(episode.id) }
         }
 
     }

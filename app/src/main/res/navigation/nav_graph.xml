@@ -5,6 +5,10 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/characterListFragment">
 
+    <action
+        android:id="@+id/action_global_to_episodeDetailFragment"
+        app:destination="@id/episodeDetailFragment"/>
+
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.example.rickmorty.characters.CharacterListFragment"
@@ -18,6 +22,7 @@
             app:popEnterAnim="@anim/slide_in_from_left"
             app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
+
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.example.rickmorty.characters.CharacterDetailFragment"
@@ -30,9 +35,28 @@
             app:argType="integer"/>
 
     </fragment>
+
     <fragment
         android:id="@+id/episodeFragment"
         android:name="com.example.rickmorty.episode.EpisodeFragment"
         android:label="Rick &amp; Morty Episodes"
         tools:layout="@layout/fragment_episode" />
+
+    <dialog
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.example.rickmorty.episode.EpisodeDetailFragment"
+        android:label="EpisodeDetailFragment"
+        tools:layout="@layout/fragment_episode_detail">
+
+        <argument
+            android:name="episodeId"
+            android:defaultValue="-1"
+            app:argType="integer"/>
+
+    </dialog>
+    <fragment
+        android:id="@+id/characterSearchFragment"
+        android:name="com.example.rickmorty.characters.search.CharacterSearchFragment"
+        android:label="Character Search"
+        tools:layout="@layout/fragment_character_search"/>
 </navigation>
