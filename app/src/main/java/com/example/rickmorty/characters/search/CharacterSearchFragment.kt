@@ -55,7 +55,14 @@ class CharacterSearchFragment : Fragment() {
         }
         lifecycleScope.launch{
             viewModel.flow.collectLatest { pagingData->
+                epoxyController.localException = null
                 epoxyController.submitData(pagingData)
+            }
+        }
+
+        viewModel.localExceptionLiveData.observe(viewLifecycleOwner){event ->
+            event.getContent()?.let {localException ->
+            epoxyController.localException = localException
             }
         }
     }

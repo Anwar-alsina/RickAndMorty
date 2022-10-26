@@ -2,12 +2,15 @@ package com.example.rickmorty.characters.search
 
 import android.text.InputFilter
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.rickmorty.Constants
+import com.example.rickmorty.Event
 
 class CharacterSearchViewModel: ViewModel() {
     private var currentUserSearch: String = ""
@@ -15,7 +18,8 @@ class CharacterSearchViewModel: ViewModel() {
     get() {
         if (field == null || field?.invalid == true) {
             field = CharacterPagingSource(currentUserSearch) { localException ->
-                Log.e("Local", localException.toString())
+                //notify our livedata of an issue from the paging source
+                _localExceptionEventLiveData.postValue(Event(localException))
             }
         }
         return field
@@ -31,7 +35,9 @@ class CharacterSearchViewModel: ViewModel() {
         pagingSource!!
     }.flow.cachedIn(viewModelScope)
 
-
+    //For error handling propagation
+    private val _localExceptionEventLiveData = MutableLiveData<Event<CharacterPagingSource.LocalException>>()
+    val localExceptionLiveData: LiveData<Event<CharacterPagingSource.LocalException>> = _localExceptionEventLiveData
     fun submitQuery(userSearch: String) {
         currentUserSearch = userSearch
         pagingSource?.invalidate()

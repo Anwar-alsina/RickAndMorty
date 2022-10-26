@@ -12,11 +12,18 @@ class CharacterPagingSource(
     private val localExceptionCallback: (LocalException) -> Unit
 ): PagingSource<Int, Characters>() {
 
-    sealed class LocalException(): Exception(){
-        object EmptySearch: LocalException()
-        object NoResults: LocalException()
+    sealed class LocalException(
+        val title: String,
+        val description : String = " "
+    ): Exception(){
+        object EmptySearch: LocalException(
+            title = "Start typing to Search"
+        )
+        object NoResults: LocalException(
+            title = "Whoops",
+            description = "Looks like your search returned No results"
+        )
     }
-
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Characters> {
 
@@ -27,7 +34,6 @@ class CharacterPagingSource(
 
         }
 
-
         val pageNumber = params.key ?: 1
         val previousKey = if (pageNumber == 1) null else pageNumber - 1
 
@@ -35,10 +41,16 @@ class CharacterPagingSource(
             characterName = userSearch,
             pageIndex = pageNumber)
 
+        //Failed to find something from the users search
+        if (request.data?.code() == 404){
+            val exception = LocalException.NoResults
+            localExceptionCallback(exception)
+            return LoadResult.Error(exception)
+        }
+
         request.exception?.let {
             return LoadResult.Error(it)
         }
-
 
         return LoadResult.Page(
             data = request.bodyNullable?.results?.map { characterResponse->
@@ -47,8 +59,6 @@ class CharacterPagingSource(
             prevKey = previousKey,
             nextKey = getPageIndexFromNext(request.bodyNullable?.info?.next)
         )
-
-
 
     }
 

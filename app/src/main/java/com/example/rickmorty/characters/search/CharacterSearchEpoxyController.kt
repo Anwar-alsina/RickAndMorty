@@ -39,6 +39,11 @@ class CharacterSearchEpoxyController(
 
     override fun addModels(models: List<EpoxyModel<*>>) {
 
+        localException?.let {
+            LocalExceptionErrorStateEpoxyModel(it).id("error_state").addTo(this)
+            return
+        }
+
         if (models.isEmpty()){
             LoadingEpoxyModel().id("loading").addTo(this)
             return
@@ -60,6 +65,21 @@ class CharacterSearchEpoxyController(
                 onCharacterSelected(characterId)
             }
         }
+    }
+
+    //Error State Data class
+    data class LocalExceptionErrorStateEpoxyModel(
+        val localException: CharacterPagingSource.LocalException
+    ):ViewBindingKotlinModel<ModelLocalExceptionErrorStateBinding>(R.layout.model_local_exception_error_state){
+        override fun ModelLocalExceptionErrorStateBinding.bind() {
+            titleTextView.text = localException.title
+            descriptionTextView.text = localException.description
+        }
+
+        override fun getSpanSize(totalSpanCount: Int, position: Int, itemCount: Int): Int {
+            return totalSpanCount
+        }
+
     }
 
 }
