@@ -9,7 +9,6 @@ import com.example.rickmorty.databinding.ModelLocalExceptionErrorStateBinding
 import com.example.rickmorty.domain.models.Characters
 import com.example.rickmorty.epoxy.LoadingEpoxyModel
 import com.example.rickmorty.epoxy.ViewBindingKotlinModel
-import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
 
 class CharacterSearchEpoxyController(
