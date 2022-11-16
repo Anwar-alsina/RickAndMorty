@@ -55,7 +55,7 @@ This App uses Clean Architecture to ensure:
 
 
 ## Screenshots
-<img src="https://user-images.githubusercontent.com/47518452/198730172-3180ea78-e214-4def-9b74-bfc008dc8e66.jpg" width="240" height="510">.<img src="https://user-images.githubusercontent.com/47518452/198730442-369c60e7-e057-454f-90ba-95f9463c8d4f.jpg" width="240" height="510">
+<img src="https://user-images.githubusercontent.com/47518452/198730172-3180ea78-e214-4def-9b74-bfc008dc8e66.jpg" width="240" height="510">.    <img src="https://user-images.githubusercontent.com/47518452/198730442-369c60e7-e057-454f-90ba-95f9463c8d4f.jpg" width="240" height="510">
 <img src="https://user-images.githubusercontent.com/47518452/198730578-3aab5b35-cdf2-4f2a-8c20-f1caabb70b1c.jpg" width="240" height="510">
 
 
